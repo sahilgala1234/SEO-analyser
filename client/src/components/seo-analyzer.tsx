@@ -5,8 +5,8 @@ import { useToast } from "@/hooks/use-toast";
 import UrlInput from "./url-input";
 import SeoOverview from "./seo-overview";
 import BasicSeoTags from "./basic-seo-tags";
-import SocialTags from "./social-tags";
-import PreviewCards from "./preview-cards";
+
+import TabbedPreviews from "./tabbed-previews";
 import Recommendations from "./recommendations";
 import { Button } from "@/components/ui/button";
 import { Download, Search, Settings, HelpCircle } from "lucide-react";
@@ -77,12 +77,11 @@ export default function SeoAnalyzer() {
             <div className="lg:col-span-2 space-y-6">
               <SeoOverview seoData={seoData} />
               <BasicSeoTags seoData={seoData} />
-              <SocialTags seoData={seoData} />
             </div>
 
             {/* Right Column: Previews & Recommendations */}
             <div className="space-y-6">
-              <PreviewCards seoData={seoData} />
+              <TabbedPreviews seoData={seoData} />
               <Recommendations recommendations={seoData.recommendations} />
             </div>
           </div>
