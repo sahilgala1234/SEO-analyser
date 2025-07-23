@@ -4,6 +4,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import UrlInput from "./url-input";
 import SeoOverview from "./seo-overview";
+import SeoCategoriesSummary from "./seo-categories-summary";
 import BasicSeoTags from "./basic-seo-tags";
 
 import TabbedPreviews from "./tabbed-previews";
@@ -42,9 +43,9 @@ export default function SeoAnalyzer() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-white/80 backdrop-blur-sm shadow-lg border-b border-white/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
@@ -72,17 +73,25 @@ export default function SeoAnalyzer() {
         />
 
         {seoData && (
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Left Column: SEO Tags Analysis */}
-            <div className="lg:col-span-2 space-y-6">
-              <SeoOverview seoData={seoData} />
-              <BasicSeoTags seoData={seoData} />
-            </div>
+          <div className="space-y-8">
+            {/* Overall Score Section */}
+            <SeoOverview seoData={seoData} />
+            
+            {/* Category Summaries */}
+            <SeoCategoriesSummary seoData={seoData} />
+            
+            {/* Detailed Analysis Grid */}
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Left Column: SEO Tags Analysis */}
+              <div className="lg:col-span-2 space-y-6">
+                <BasicSeoTags seoData={seoData} />
+              </div>
 
-            {/* Right Column: Previews & Recommendations */}
-            <div className="space-y-6">
-              <TabbedPreviews seoData={seoData} />
-              <Recommendations recommendations={seoData.recommendations} />
+              {/* Right Column: Previews & Recommendations */}
+              <div className="space-y-6">
+                <TabbedPreviews seoData={seoData} />
+                <Recommendations recommendations={seoData.recommendations} />
+              </div>
             </div>
           </div>
         )}

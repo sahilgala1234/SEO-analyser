@@ -53,32 +53,34 @@ export default function Recommendations({ recommendations }: RecommendationsProp
   };
 
   return (
-    <Card>
+    <Card className="shadow-lg border-2 border-gray-100">
       <CardContent className="p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-          <Lightbulb className="text-yellow-500 mr-2 h-5 w-5" />
-          Recommendations
+        <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+          <div className="p-2 bg-yellow-100 rounded-lg mr-3">
+            <Lightbulb className="text-yellow-600 h-5 w-5" />
+          </div>
+          Action Items
         </h3>
         
-        <div className="space-y-3">
+        <div className="space-y-4">
           {recommendations.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
-              <CheckCircle className="h-12 w-12 mx-auto mb-4 text-green-500" />
-              <p className="text-lg font-medium text-green-600">Perfect SEO!</p>
-              <p className="text-sm">No recommendations needed.</p>
+            <div className="text-center py-12 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl border-2 border-green-200">
+              <CheckCircle className="h-16 w-16 mx-auto mb-4 text-green-500" />
+              <p className="text-xl font-bold text-green-600 mb-2">Perfect SEO!</p>
+              <p className="text-gray-600">Your website is fully optimized with no recommendations needed.</p>
             </div>
           ) : (
             recommendations.map((rec, index) => (
               <div
                 key={index}
-                className={`flex items-start space-x-3 p-3 border rounded-lg ${getColorClasses(rec.type)}`}
+                className={`flex items-start space-x-4 p-5 border-2 rounded-xl transition-all hover:shadow-md ${getColorClasses(rec.type)}`}
               >
-                <div className="mt-0.5">
+                <div className="flex-shrink-0 mt-1">
                   {getIcon(rec.type)}
                 </div>
-                <div className="flex-1">
-                  <div className="font-medium">{rec.title}</div>
-                  <div className={`text-sm ${getDescriptionColorClasses(rec.type)}`}>
+                <div className="flex-1 min-w-0">
+                  <div className="font-semibold text-gray-900 mb-1">{rec.title}</div>
+                  <div className={`text-sm leading-relaxed ${getDescriptionColorClasses(rec.type)}`}>
                     {rec.description}
                   </div>
                 </div>
