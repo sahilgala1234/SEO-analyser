@@ -15,7 +15,8 @@ export default function UrlInput({ onAnalyze, isLoading }: UrlInputProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (url.trim()) {
-      onAnalyze(url.trim());
+      const fullUrl = `https://${url.trim()}`;
+      onAnalyze(fullUrl);
     }
   };
 
@@ -30,12 +31,15 @@ export default function UrlInput({ onAnalyze, isLoading }: UrlInputProps) {
         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
           <div className="flex-1">
             <div className="relative">
+              <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 font-mono text-sm pointer-events-none">
+                https://
+              </div>
               <Input
-                type="url"
-                placeholder="https://example.com"
+                type="text"
+                placeholder="example.com"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                className="pr-10 font-mono text-sm"
+                className="pl-20 pr-10 font-mono text-sm"
                 disabled={isLoading}
               />
               <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
