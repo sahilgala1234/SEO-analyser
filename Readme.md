@@ -1,4 +1,5 @@
 # SEO Analyzer Application
+<img width="490" height="370" alt="image" src="https://github.com/user-attachments/assets/1254f3e4-c097-4da4-89e1-bc79d7d8182b" />
 
 ## Overview
 
